@@ -29,67 +29,41 @@ const DB = {
 }
 
 const findUserById = (id) => {
-	// return {}
+    const notFoundUser = 'Not Found';
+    const user = DB.users.find(item => {
+        if (item.id === id) {
+            return true;
+        // } else if () {
+            
+        }
+    });
 
-    const users = DB.users;
-    const levels = DB.levels;
-    const skills = DB.skills;
+    let level = DB.levels.filter(item => {
+        if (item.id === user.levelId) {
+            return true;
+        }
+    })
 
-    // let getName = users.find(function(item) {
-    //     if(item.id == 1) 
-    //     return item
-    // })
+    level = level.map(item => {
+        return item.name;
+    })
 
-    for (let user of users) {
-        console.log(user.name)
-    }
+    let skills = DB.skills.filter(item => {
+        if (user.skills.includes(item.id)) {
+            return true;
+        }
+    })
 
-    // let getLevel = levels.find(function(item) {
-    //     if(item.id == 3) 
-    //     return item
-    // })
+    skills = skills.map(item => {
+        return item.name;
+    })
 
-    for (let level of levels) {
-        console.log(level.name)
-    }
-
-    // let getSkills = skills.find(function(item) {
-    //     if(item.id == 1) 
-    //     return item
-    // })
-
-    for (let skill of skills) {
-        console.log(skill.name)
-    }
-    
-    // console.log(`name: '${getName.name}', \nposition: '${getLevel.name}', \nskills: '${getSkills.name}'`)
+    const name = `name: ${user.name}, \nposition: ${level}, \nskills: ${skills}`;
+    console.log(name)
 }
 
+findUserById('2');
 
-findUserById()
-
-// const oleg = findUserById('2')
-// console.log(oleg)
-/*
-{
-	name: 'Oleg',
-	position: 'junior',
-	skills: ['html/css', 'js'],
-}
-*/
-
-// const andriy = findUserById('1')
-// console.log(andriy)
-/*
-{
-    name: 'Andriy Petrash',
-	  position: 'senior',
-	  skills: ['html/css', 'js', 'nodejs', 'react', 'TypeScript'],
-}
-*/
-
-// const notFoundUser = findUserById('33')
-// console.log(notFoundUser)
 /*
 "Not Found"
 */
