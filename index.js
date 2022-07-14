@@ -29,14 +29,15 @@ const DB = {
 }
 
 const findUserById = (id) => {
-    const notFoundUser = 'Not Found';
     const user = DB.users.find(item => {
         if (item.id === id) {
             return true;
-        // } else if () {
-            
-        }
+        } 
     });
+
+    if (!user) {
+        return 'Not Found'
+    }
 
     let level = DB.levels.filter(item => {
         if (item.id === user.levelId) {
@@ -58,12 +59,12 @@ const findUserById = (id) => {
         return item.name;
     })
 
-    const name = `name: ${user.name}, \nposition: ${level}, \nskills: ${skills}`;
-    console.log(name)
+    const obj = {name: user.name, skills: skills, position: level}
+    return obj;
 }
 
-findUserById('2');
+const andriy = findUserById('1');
+console.log(andriy);
 
-/*
-"Not Found"
-*/
+const oleg = findUserById('2');
+console.log(oleg);
