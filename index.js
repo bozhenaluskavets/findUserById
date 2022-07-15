@@ -39,14 +39,10 @@ const findUserById = (id) => {
         return 'Not Found'
     }
 
-    let level = DB.levels.filter(item => {
+    let level = DB.levels.find(item => {
         if (item.id === user.levelId) {
             return true;
         }
-    })
-
-    level = level.map(item => {
-        return item.name;
     })
 
     let skills = DB.skills.filter(item => {
@@ -59,7 +55,7 @@ const findUserById = (id) => {
         return item.name;
     })
 
-    const obj = {name: user.name, skills: skills, position: level}
+    const obj = {name: user.name, skills: skills, position: level.name}
     return obj;
 }
 
